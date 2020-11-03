@@ -1,0 +1,22 @@
+{
+  "name": "react_ecommerce_2",
+  "version": "1.0.0",
+  "description": "another ecommerce project with react",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/misiekhardcore/react_ecommerce_2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/misiekhardcore/react_ecommerce_2/issues"
+  },
+  "homepage": "https://github.com/misiekhardcore/react_ecommerce_2#readme",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.1"
+  }
+}

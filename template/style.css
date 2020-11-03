@@ -1,0 +1,111 @@
+html {
+  font-size: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-size: 1.6rem;
+
+  display: grid;
+  grid-template:
+    "header"
+    "main"
+    "footer";
+  grid-template-columns: 1fr;
+  grid-template-rows: 5rem 1fr 5rem;
+}
+
+h1 {
+  margin: 0;
+}
+
+header {
+  background-color: #203040;
+  grid-area: header;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+header .logo {
+  padding: 1rem;
+  font-weight: 800;
+  font-size: 3rem;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover{
+  text-decoration: underline;
+}
+
+header nav a:hover {
+  color: #ff8000;
+}
+
+header nav {
+  margin-left: auto;
+  padding: 0 1rem;
+}
+
+header nav a {
+  padding: 1rem;
+}
+
+main {
+  height: 100%;
+  padding: 1rem;
+  grid-area: main;
+}
+
+footer {
+  background-color: #203040;
+  color: #ccc;
+  grid-area: footer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+.center {
+  justify-content: center;
+}
+
+.card {
+  width: 22%;
+  background-color: #fff;
+  border: 1px solid #444;
+  border-radius: 1rem;
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
+}
+
+.card .card-thumbnail img {
+  display: block;
+  width: 100%;
+  border-radius: 1rem 1rem 0 0;
+  -webkit-border-radius: 1rem 1rem 0 0;
+  -moz-border-radius: 1rem 1rem 0 0;
+}
+
+.card .card-body {
+  padding: 0 1rem;
+}
+
+.rating {
+  color: #f0c040;
+  font-size: 2rem;
+  font-weight: bold;
+}
