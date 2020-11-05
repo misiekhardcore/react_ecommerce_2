@@ -59,6 +59,12 @@ a:hover {
   text-decoration: underline;
 }
 
+ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 header nav a:hover {
   color: #ff8000;
 }
@@ -97,6 +103,10 @@ footer {
   justify-content: center;
 }
 
+.top{
+  align-items: flex-start;
+}
+
 .card {
   margin: 1rem;
   min-width: 300px;
@@ -125,12 +135,35 @@ footer {
 }
 
 .rating {
+  display: flex;
   color: #f0c040;
   font-size: 1.5rem;
   font-weight: bold;
 }
 
+.rating .review{
+  margin: 0 0 0 auto;
+  color: rgb(58, 58, 58);
+  font-weight: 400;
+}
+
 .price {
   font-size: 2rem;
   font-weight: bold;
+}
+
+.col-2{
+  width: 50%;
+  color: red;
+}
+
+.col-1{
+  width: 25%;
+  color: gray;
+}
+
+.error{
+  color: red;
+  font-weight: 400;
+  font-size: 1.5rem;
 }
