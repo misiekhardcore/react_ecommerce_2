@@ -59,10 +59,14 @@ a:hover {
   text-decoration: underline;
 }
 
-ul{
+ul {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+img.large {
+  width: 100%;
 }
 
 header nav a:hover {
@@ -103,16 +107,16 @@ footer {
   justify-content: center;
 }
 
-.top{
+.top {
   align-items: flex-start;
 }
 
 .card {
-  margin: 1rem;
+  flex: 0 0 25rem;
+  margin: 1rem auto;
   min-width: 300px;
-  width: 22%;
-  background-color: rgb(251, 255, 218);
-  border: 1px solid #444;
+  background-color: rgb(247, 249, 231);
+  border: 1px solid #999;
   border-radius: 1rem;
   -webkit-border-radius: 1rem;
   -moz-border-radius: 1rem;
@@ -131,7 +135,7 @@ footer {
 }
 
 .card .card-body {
-  padding: 0 1rem;
+  padding: 1rem;
 }
 
 .rating {
@@ -141,10 +145,16 @@ footer {
   font-weight: bold;
 }
 
-.rating .review{
-  margin: 0 0 0 auto;
+.rating .review {
+  margin: 0 0 0 2rem;
   color: rgb(58, 58, 58);
   font-weight: 400;
+}
+
+.seller {
+  font-weight: 800;
+  font-size: 2rem;
+  margin: 0;
 }
 
 .price {
@@ -152,18 +162,47 @@ footer {
   font-weight: bold;
 }
 
-.col-2{
-  width: 50%;
-  color: red;
+.col-2 {
+  flex: 2 1 50rem;
 }
 
-.col-1{
-  width: 25%;
-  color: gray;
+.col-1 {
+  flex: 1 1 25rem;
 }
 
-.error{
-  color: red;
+.success,
+.error {
   font-weight: 400;
   font-size: 1.5rem;
+}
+
+.error {
+  color: red;
+}
+
+.success {
+  color: green;
+}
+
+button {
+  padding: 1rem 2rem;
+  font-weight: 800;
+  border: 1px solid #999;
+  border-radius: 0.5rem;
+  background-color: #aaaaaa;
+  cursor: pointer;
+}
+
+button:hover,
+button:focus {
+  border-color: black;
+}
+
+button.primary {
+  background-color: #f0c040;
+}
+
+button.block {
+  width: 100%;
+  display: block;
 }
