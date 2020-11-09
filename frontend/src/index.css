@@ -206,3 +206,21 @@ button.block {
   width: 100%;
   display: block;
 }
+
+.alert {
+  padding: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+}
+
+.alert-error {
+  color: rgb(148, 0, 0);
+  border-color: rgb(148, 0, 0);
+  background-color: rgb(255, 176, 176);
+}
+
+.alert-success {
+  color: rgb(0, 148, 0);
+  border-color: rgb(0, 148, 0);
+  background-color: rgb(176, 255, 176);
+}

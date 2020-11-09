@@ -8,3 +8,4 @@ another ecommerce project with react
 - install express and nodemon
 - added "type: module" in package.json to use ES6
 - added a start script in package.json
+- use axios to get data from api instead of from data.js
