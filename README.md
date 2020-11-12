@@ -6,6 +6,20 @@ another ecommerce project with react
 ###server with express
 
 - install express and nodemon
-- added "type: module" in package.json to use ES6
 - added a start script in package.json
 - use axios to get data from api instead of from data.js
+
+### eslint
+
+- eslint extension from vs extensions
+- in root folder `./node_modules/.bin/eslint --init`
+- added `.env` in frontent with `SKIP_PREFLIGHT_CHECK=true`
+
+### redux
+
+- instaling redux and react-redux
+- creating redux folder and creating store
+- adding redux devtools to store
+  -added `<Provider store={store}>` to **index.js**
+- added folder for product stuff(actions, types, reducers)
+- modified **HomePage** to use store instead of **Hooks**
