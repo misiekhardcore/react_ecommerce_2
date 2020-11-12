@@ -17,7 +17,7 @@ another ecommerce project with react
 
 ### redux
 
-- instaling redux and react-redux
+- instaling redux, react-redux and redux-thunk
 - creating redux folder and creating store
 - adding redux devtools to store
   -added `<Provider store={store}>` to **index.js**
