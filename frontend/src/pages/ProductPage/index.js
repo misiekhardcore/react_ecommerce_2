@@ -1,83 +1,94 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
+import "./../../data.js";
+
+import MessageBox from "./../../components/MessageBox";
+import LoadingBox from "./../../components/LoadingBox";
 import Rating from "../../components/Rating";
-import data from "../../data";
+
+import { fetchProductDetails } from "../../redux/products/actions";
 
 const ProductPage = () => {
+  const dispatch = useDispatch();
+  const { product, seller, error, loading } = useSelector(
+    (state) => state.productDetails
+  );
+
   const { id } = useParams();
-  const {
-    name,
-    price,
-    image,
-    rating,
-    numReviews,
-    _id,
-    description,
-    countInStock,
-    sellerId,
-  } = data.products.find((x) => x._id === id);
+  console.log(id);
 
-  const seller = data.sellers.find((x) => x._id === sellerId);
+  useEffect(() => {
+    dispatch(fetchProductDetails(id));
+  }, [dispatch, id]);
 
-  if (!name) return <p className="error">Product not found</p>;
   return (
-    <div>
-      <Link to="/">Back to products</Link>
-      <div className="row top">
-        <div className="col-2">
-          <img className="large" src={image} alt={name} />
-        </div>
-        <div className="col-1">
-          <ul>
-            <li>
-              <h1>{name}</h1>
-            </li>
-            <li>
-              <Rating {...{ rating, numReviews, _id }}></Rating>
-            </li>
-            <li>
-              <p>Price: $ {price}</p>
-            </li>
-            <li>
-              <p>Description:</p>
-              <p>{description}</p>
-            </li>
-          </ul>
-        </div>
-        <div className="col-1">
-          <div className="card">
-            <div className="card-body">
+    <>
+      {loading ? (
+        <LoadingBox />
+      ) : error ? (
+        <MessageBox variant="error">{error}</MessageBox>
+      ) : (
+        <div>
+          <Link to="/">Back to products</Link>
+          <div className="row top">
+            <div className="col-2">
+              <img className="large" src={product.image} alt={product.name} />
+            </div>
+            <div className="col-1">
               <ul>
                 <li>
-                  <p>Seller:</p>
-                </li>
-                <li className="row">
-                  <p className="seller">{seller.name}</p>
+                  <h1>{product.name}</h1>
                 </li>
                 <li>
-                  <Rating {...seller}></Rating>
+                  <Rating {...product}></Rating>
                 </li>
-                <li className="row">
-                  <p>Price:</p>
-                  <p className="price">$ {price}</p>
+                <li>
+                  <p>Price: $ {product.price}</p>
                 </li>
-                <li className="row">
-                  <p>Status:</p>
-                  {countInStock > 0 ? (
-                    <p className="success">In Stock</p>
-                  ) : (
-                    <p className="error">Out of Stock</p>
-                  )}
-                </li>
-                <li className="row">
-                  <button className="primary block">Add to Cart</button>
+                <li>
+                  <p>Description:</p>
+                  <p>{product.description}</p>
                 </li>
               </ul>
             </div>
+            <div className="col-1">
+              <div className="card">
+                <div className="card-body">
+                  <ul>
+                    <li>
+                      <p>Seller:</p>
+                    </li>
+                    <li className="row">
+                      <p className="seller">{seller.name}</p>
+                    </li>
+                    <li>
+                      <Rating {...seller}></Rating>
+                    </li>
+                    <li className="row">
+                      <p>Price:</p>
+                      <p className="price">$ {product.price}</p>
+                    </li>
+                    <li className="row">
+                      <p>Status:</p>
+                      {product.countInStock > 0 ? (
+                        <p className="success">In Stock</p>
+                      ) : (
+                        <p className="error">Out of Stock</p>
+                      )}
+                    </li>
+                    <li className="row">
+                      <button className="primary block">Add to Cart</button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 

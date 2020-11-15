@@ -17,7 +17,7 @@ function App() {
           </nav>
         </header>
         <main>
-          <Route path="/product/:id" component={ProductPage} />
+          <Route path="/products/:id" component={ProductPage} />
           <Route exact path="/" component={HomePage} />
         </main>
         <footer>All rights reserved</footer>

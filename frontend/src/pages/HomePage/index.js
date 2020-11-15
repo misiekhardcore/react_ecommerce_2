@@ -4,15 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 
 import LoadingBox from "./../../components/LoadingBox";
 import MessageBox from "../../components/MessageBox";
-import { listProducts } from "../../redux/products/actions";
+import { fetchProducts } from "../../redux/products/actions";
 
 const HomePage = () => {
   const dispatch = useDispatch();
-  const productList = useSelector((state) => state.productList);
-  const { error, loading, products } = productList;
+  const { error, loading, products } = useSelector(
+    (state) => state.productList
+  );
 
   useEffect(() => {
-    dispatch(listProducts());
+    dispatch(fetchProducts());
   }, [dispatch]);
 
   return (
