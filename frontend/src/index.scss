@@ -66,7 +66,9 @@ ul {
 }
 
 img.large {
-  width: 100%;
+  max-width: 100%;
+  max-height: 60rem;
+  object-fit: cover;
 }
 
 header nav a:hover {
@@ -138,6 +140,12 @@ footer {
   padding: 1rem;
 }
 
+.row select {
+  padding: 0.5rem 1rem;
+  border: 1px solid #999;
+  border-radius: 0.3rem;
+}
+
 .rating {
   display: flex;
   color: #f0c040;
@@ -164,6 +172,8 @@ footer {
 
 .col-2 {
   flex: 2 1 50rem;
+  display: flex;
+  justify-content: center;
 }
 
 .col-1 {
@@ -184,15 +194,31 @@ footer {
   color: green;
 }
 
+select,
+input,
+textarea,
 button {
   padding: 1rem 2rem;
   font-weight: 800;
   border: 1px solid #999;
   border-radius: 0.5rem;
+}
+
+button {
   background-color: #aaaaaa;
   cursor: pointer;
 }
 
+button:disabled {
+  cursor: auto;
+}
+
+input:hover,
+input:focus,
+select:hover,
+select:focus,
+textarea:hover,
+textarea:focus,
 button:hover,
 button:focus {
   border-color: black;
@@ -200,6 +226,10 @@ button:focus {
 
 button.primary {
   background-color: #f0c040;
+}
+
+button:disabled.primary {
+  background-color: #ccc;
 }
 
 button.block {
@@ -223,4 +253,13 @@ button.block {
   color: rgb(0, 148, 0);
   border-color: rgb(0, 148, 0);
   background-color: rgb(176, 255, 176);
+}
+
+.badge {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.2rem 0.7rem;
+  background-color: red;
+  border-radius: 50%;
+  color: white;
 }

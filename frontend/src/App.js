@@ -1,24 +1,35 @@
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Link, Route } from "react-router-dom";
 
 import HomePage from "./pages/HomePage";
 import ProductPage from "./pages/ProductPage";
+import CartPage from "./pages/CartPage";
+import { useSelector } from "react-redux";
 
 function App() {
+  const cart = useSelector((state) => state.cartList);
+  const { cartItems } = cart;
+
   return (
     <BrowserRouter>
       <div className="App">
         <header>
           <div className="logo">
-            <a href="/">amazona</a>
+            <Link to="/">amazona</Link>
           </div>
           <nav>
-            <a href="/cart">cart</a>
-            <a href="/signin">sign in</a>
+            <Link to="/cart">
+              Cart
+              {cartItems.length && (
+                <span className="badge">{cartItems.length}</span>
+              )}
+            </Link>
+            <Link to="/signin">sign in</Link>
           </nav>
         </header>
         <main>
           <Route path="/products/:id" component={ProductPage} />
           <Route exact path="/" component={HomePage} />
+          <Route path="/cart/:id?" component={CartPage} />
         </main>
         <footer>All rights reserved</footer>
       </div>

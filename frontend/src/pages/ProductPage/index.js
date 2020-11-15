@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -10,18 +10,26 @@ import Rating from "../../components/Rating";
 
 import { fetchProductDetails } from "../../redux/products/actions";
 
-const ProductPage = () => {
+const ProductPage = (props) => {
   const dispatch = useDispatch();
+  const [qty, setQty] = useState(1);
   const { product, seller, error, loading } = useSelector(
     (state) => state.productDetails
   );
 
   const { id } = useParams();
-  console.log(id);
 
   useEffect(() => {
     dispatch(fetchProductDetails(id));
   }, [dispatch, id]);
+
+  const handleQty = (val) => {
+    setQty(val);
+  };
+
+  const handleAddToCart = () => {
+    props.history.push(`/cart/${id}?qty=${qty}`);
+  };
 
   return (
     <>
@@ -73,14 +81,47 @@ const ProductPage = () => {
                     <li className="row">
                       <p>Status:</p>
                       {product.countInStock > 0 ? (
-                        <p className="success">In Stock</p>
+                        <p className="success">
+                          In Stock {`(${product.countInStock})`}
+                        </p>
                       ) : (
                         <p className="error">Out of Stock</p>
                       )}
                     </li>
-                    <li className="row">
-                      <button className="primary block">Add to Cart</button>
-                    </li>
+                    {product.countInStock > 0 && (
+                      <>
+                        <li className="row">
+                          <p>Qty:</p>
+                          <select
+                            name="qty"
+                            value={qty}
+                            onChange={(e) => handleQty(e.target.value)}
+                          >
+                            {product.countInStock < 10
+                              ? [...Array(product.countInStock).keys()].map(
+                                  (x) => (
+                                    <option key={x + 1} value={x + 1}>
+                                      {x + 1}
+                                    </option>
+                                  )
+                                )
+                              : [...Array(10).keys()].map((x) => (
+                                  <option key={x + 1} value={x + 1}>
+                                    {x + 1}
+                                  </option>
+                                ))}
+                          </select>
+                        </li>
+                        <li className="row">
+                          <button
+                            onClick={() => handleAddToCart()}
+                            className="primary block"
+                          >
+                            Add to Cart
+                          </button>
+                        </li>
+                      </>
+                    )}
                   </ul>
                 </div>
               </div>

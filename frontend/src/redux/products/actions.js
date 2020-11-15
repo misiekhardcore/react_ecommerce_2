@@ -23,7 +23,6 @@ export const fetchProducts = () => async (dispatch) => {
 export const fetchProductDetails = (id) => async (dispatch) => {
   dispatch({
     type: types.PRODUCT_DETAILS_REQUEST,
-    payload: id,
   });
 
   try {
@@ -33,10 +32,9 @@ export const fetchProductDetails = (id) => async (dispatch) => {
       payload: data,
     });
   } catch (err) {
-    console.log(err.message);
     dispatch({
       type: types.PRODUCT_DETAILS_FAIL,
-      error:
+      payload:
         err.response && err.response.data.message
           ? err.response.data.message
           : err.message,

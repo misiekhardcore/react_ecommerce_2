@@ -5,8 +5,9 @@ const app = express();
 
 app.get("/api/products/:id", (req, res) => {
   const product = data.products.find((x) => x._id === req.params.id);
-  const seller = data.sellers.find((x) => x._id === product.sellerId);
-  if (product && seller) {
+
+  if (product) {
+    const seller = data.sellers.find((x) => x._id === product.sellerId);
     res.send({ product, seller });
   } else {
     res.status(404).send({ message: "Product not found" });
