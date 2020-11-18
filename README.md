@@ -17,6 +17,11 @@ another ecommerce project with react
 - create Router for Users
 - create Router for Products
 
+### user handling
+
+- install `jsonwebtoken` to generate authentication tokens
+- install `dotenv` to keep private key for `jwt`
+
 ### eslint
 
 - eslint extension from vs extensions
