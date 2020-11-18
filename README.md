@@ -8,11 +8,14 @@ another ecommerce project with react
 - install `express` and `nodemon`
 - added a start script in package.json
 - use axios to get data from api instead of from data.js
+- install `expressAsyncHandler` to use async functions to get data from server
 
 ### mongodb and mongoose
 
 - install `mongoose`
 - made `backend/models/userModel.js` and create userSchema
+- create Router for Users
+- create Router for Products
 
 ### eslint
 

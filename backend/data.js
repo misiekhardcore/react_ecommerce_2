@@ -17,7 +17,6 @@ const data = {
   ],
   products: [
     {
-      _id: "1",
       name: "Nike slim shirt",
       category: "shirts",
       image: "/images/p1.jpg",
@@ -30,7 +29,6 @@ const data = {
       sellerId: 1,
     },
     {
-      _id: "2",
       name: "Adidas slim shirt",
       category: "shirts",
       image: "/images/p2.jpg",
@@ -43,7 +41,6 @@ const data = {
       sellerId: 3,
     },
     {
-      _id: "3",
       name: "Ralph free shirt",
       category: "shirts",
       image: "/images/p3.jpg",
@@ -56,7 +53,6 @@ const data = {
       sellerId: 2,
     },
     {
-      _id: "4",
       name: "Wrangler white pants",
       category: "pants",
       image: "/images/p4.jpg",
@@ -69,7 +65,6 @@ const data = {
       sellerId: 3,
     },
     {
-      _id: "5",
       name: "Lee slim pants",
       category: "pants",
       image: "/images/p5.jpg",
@@ -82,7 +77,6 @@ const data = {
       sellerId: 4,
     },
     {
-      _id: "6",
       name: "Nike elegant pants",
       category: "pants",
       image: "/images/p6.jpg",
@@ -97,25 +91,21 @@ const data = {
   ],
   sellers: [
     {
-      _id: 1,
       name: "Adam",
       rating: 2.5,
       numReviews: 0,
     },
     {
-      _id: 2,
       name: "Niko",
       rating: 4.0,
       numReviews: 7,
     },
     {
-      _id: 3,
       name: "Gosia",
       rating: 3.5,
       numReviews: 10,
     },
     {
-      _id: 4,
       name: "Jarek",
       rating: 5.0,
       numReviews: 24,

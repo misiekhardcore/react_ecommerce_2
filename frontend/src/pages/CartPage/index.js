@@ -28,8 +28,7 @@ const CartPage = (props) => {
     if (id) {
       dispatch(addToCart(id, qty));
     }
-    props.history.push("/cart");
-  }, [dispatch, id, qty, props.history]);
+  }, [dispatch, id, qty]);
 
   return (
     <div className="row top">
