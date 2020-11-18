@@ -1,13 +1,18 @@
 # react_ecommerce_2
 
 another ecommerce project with react
-[video](https://youtu.be/TRCDsB9i3bI?t=13856)
+[video](https://youtu.be/TRCDsB9i3bI?t=15154)
 
-###server with express
+### server with express
 
-- install express and nodemon
+- install `express` and `nodemon`
 - added a start script in package.json
 - use axios to get data from api instead of from data.js
+
+### mongodb and mongoose
+
+- install `mongoose`
+- made `backend/models/userModel.js` and create userSchema
 
 ### eslint
 
