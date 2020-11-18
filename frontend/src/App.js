@@ -19,9 +19,9 @@ function App() {
           <nav>
             <Link to="/cart">
               Cart
-              {cartItems.length && (
+              {cartItems.length ? (
                 <span className="badge">{cartItems.length}</span>
-              )}
+              ) : null}
             </Link>
             <Link to="/signin">sign in</Link>
           </nav>

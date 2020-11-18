@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { addToCart } from "../../redux/cart/actions";
+import { addToCart, removeFromCart } from "../../redux/cart/actions";
 import "./styles.scss";
 
 import MessageBox from "./../../components/MessageBox";
@@ -17,7 +17,7 @@ const CartPage = (props) => {
   const { cartItems } = useSelector((state) => state.cartList);
 
   const handleRemoveFromCart = (id) => {
-    return null;
+    dispatch(removeFromCart(id));
   };
 
   const handleCheckout = () => {
@@ -28,14 +28,15 @@ const CartPage = (props) => {
     if (id) {
       dispatch(addToCart(id, qty));
     }
-  }, [dispatch, id, qty]);
+    props.history.push("/cart");
+  }, [dispatch, id, qty, props.history]);
 
   return (
     <div className="row top">
       <div className="col-2">
         <h1>Shopping Cart</h1>
         {cartItems.length === 0 ? (
-          <MessageBox>
+          <MessageBox variant="error">
             Cart is empty. <Link to="/">Go shopping</Link>
           </MessageBox>
         ) : (
@@ -82,7 +83,7 @@ const CartPage = (props) => {
                     <button
                       className="deletebutton"
                       type="button"
-                      onClick={() => handleRemoveFromCart(product.id)}
+                      onClick={() => handleRemoveFromCart(product._id)}
                     >
                       X
                     </button>
@@ -93,7 +94,6 @@ const CartPage = (props) => {
           </ul>
         )}
       </div>
-      <div className="col-1"></div>
       <div className="col-1">
         <div className="card">
           <div className="card-body">

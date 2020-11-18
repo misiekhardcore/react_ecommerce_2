@@ -25,3 +25,15 @@ export const addToCart = (id, qty) => async (dispatch, getState) => {
     });
   }
 };
+
+export const removeFromCart = (id) => async (dispatch, getState) => {
+  dispatch({
+    type: types.REMOVE_FROM_CART_REQUEST,
+    payload: id,
+  });
+  console.log(getState().cartList.cartItems);
+  localStorage.setItem(
+    "cartItems",
+    JSON.stringify(getState().cartList.cartItems)
+  );
+};

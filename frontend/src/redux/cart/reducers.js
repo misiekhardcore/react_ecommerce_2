@@ -36,6 +36,14 @@ export const cartListReducer = (
         loading: false,
         error: action.payload,
       };
+    case types.REMOVE_FROM_CART_REQUEST:
+      return {
+        ...state,
+        cartItems: state.cartItems.filter(
+          (x) => x.product._id !== action.payload
+        ),
+      };
+
     default:
       return { ...state };
   }
