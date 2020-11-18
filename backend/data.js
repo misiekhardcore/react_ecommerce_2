@@ -91,21 +91,25 @@ const data = {
   ],
   sellers: [
     {
+      _id: 1,
       name: "Adam",
       rating: 2.5,
       numReviews: 0,
     },
     {
+      _id: 2,
       name: "Niko",
       rating: 4.0,
       numReviews: 7,
     },
     {
+      _id: 3,
       name: "Gosia",
       rating: 3.5,
       numReviews: 10,
     },
     {
+      _id: 4,
       name: "Jarek",
       rating: 5.0,
       numReviews: 24,

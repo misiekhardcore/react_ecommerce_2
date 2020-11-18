@@ -1,0 +1,47 @@
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import FormInput from "../../components/FormInput";
+
+const SigninPage = (props) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  return (
+    <div className="row">
+      <div className="card no-flex">
+        <div className="card-body">
+          <h1>Sign In</h1>
+          <form className="form" onSubmit={handleSubmit}>
+            <FormInput
+              type="email"
+              name="email"
+              label="Email:"
+              placeholder="Enter your email"
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <FormInput
+              type="password"
+              name="password"
+              label="Password:"
+              placeholder="Enter your password"
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <button className="block primary" type="submit">
+              Signin
+            </button>
+            <div>
+              New account? <Link to="/register">Create account</Link>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default SigninPage;
