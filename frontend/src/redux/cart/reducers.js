@@ -43,7 +43,11 @@ export const cartListReducer = (
           (x) => x.product._id !== action.payload
         ),
       };
-
+    case types.REMOVE_ALL_FROM_CART_REQUEST:
+      return {
+        ...state,
+        cartItems: [],
+      };
     default:
       return { ...state };
   }
