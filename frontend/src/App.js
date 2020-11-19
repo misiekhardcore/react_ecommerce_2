@@ -10,6 +10,7 @@ import { signout } from "./redux/user/actions";
 import RegisterPage from "./pages/RegisterPage";
 import ShippingAddressPage from "./pages/ShippingAddressPage/";
 import PaymentScreen from "./pages/PaymentPage";
+import PlaceorderPage from "./pages/PlaceorderPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -60,6 +61,7 @@ function App() {
           <Route path="/register" component={RegisterPage} />
           <Route path="/shipping" component={ShippingAddressPage} />
           <Route path="/payment" component={PaymentScreen} />
+          <Route path="/placeorder" component={PlaceorderPage} />
           <Route exact path="/" component={HomePage} />
         </main>
         <footer>All rights reserved</footer>
