@@ -22,7 +22,7 @@ another ecommerce project with react
 
 - install `jsonwebtoken` to generate authentication tokens
 - install `dotenv` to keep private key for `jwt`
-- using `localStore` to keep **userInfo** reducer params in memory
+- using `localStorage` to keep **userInfo** reducer params in memory
 
 ### eslint
 
@@ -46,4 +46,4 @@ another ecommerce project with react
 
 - making cart template
 - adding cart to redux store
-- using `localStore` to keep **cartList** reducer params in memory
+- using `localStorage` to keep **cartList** reducer params in memory

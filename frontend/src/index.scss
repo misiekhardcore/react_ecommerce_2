@@ -111,6 +111,7 @@ footer {
   align-items: center;
   justify-content: space-between;
 }
+
 .center {
   justify-content: center;
 }
@@ -153,6 +154,10 @@ footer {
   padding: 0.5rem 1rem;
   border: 1px solid #999;
   border-radius: 0.3rem;
+}
+
+.loading {
+  display: block !important;
 }
 
 .rating {
@@ -214,7 +219,6 @@ input,
 textarea,
 button {
   padding: 1rem 2rem;
-  font-weight: 800;
   border: 1px solid #999;
   border-radius: 0.5rem;
 }
@@ -329,5 +333,19 @@ button.deletebutton {
     background-color: #203040;
     margin: 0.4rem 0 0;
     border-radius: 0.5rem;
+  }
+}
+
+.checkoutSteps > div {
+  border-top: 0.3rem #c0c0c0 solid;
+  color: #c0c0c0;
+  flex: 1;
+  padding: 1rem;
+  text-align: center;
+  font-weight: bold;
+
+  &.active {
+    border-color: #ff8000;
+    color: #ff8000;
   }
 }

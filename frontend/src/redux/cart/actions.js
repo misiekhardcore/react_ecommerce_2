@@ -43,3 +43,11 @@ export const removeAllFromCart = () => (dispatch) => {
     type: types.REMOVE_ALL_FROM_CART_REQUEST,
   });
 };
+
+export const saveShippingAddress = (data) => (dispatch) => {
+  dispatch({
+    type: types.SAVE_SHIPPING_ADDRESS,
+    payload: data,
+  });
+  localStorage.setItem("shippingAddress", JSON.stringify(data));
+};

@@ -48,6 +48,11 @@ export const cartListReducer = (
         ...state,
         cartItems: [],
       };
+    case types.SAVE_SHIPPING_ADDRESS:
+      return {
+        ...state,
+        shippingAddress: action.payload,
+      };
     default:
       return { ...state };
   }

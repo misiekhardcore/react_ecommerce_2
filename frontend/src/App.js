@@ -9,6 +9,7 @@ import SigninPage from "./pages/SigninPage";
 import { signout } from "./redux/user/actions";
 import { removeAllFromCart } from "./redux/cart/actions";
 import RegisterPage from "./pages/RegisterPage";
+import ShippingAddressPage from "./pages/ShippingAddressPage.js";
 
 function App() {
   const dispatch = useDispatch();
@@ -55,10 +56,11 @@ function App() {
         </header>
         <main>
           <Route path="/products/:id" component={ProductPage} />
-          <Route exact path="/" component={HomePage} />
           <Route path="/cart/:id?" component={CartPage} />
           <Route path="/signin" component={SigninPage} />
           <Route path="/register" component={RegisterPage} />
+          <Route path="/shipping" component={ShippingAddressPage} />
+          <Route exact path="/" component={HomePage} />
         </main>
         <footer>All rights reserved</footer>
       </div>
