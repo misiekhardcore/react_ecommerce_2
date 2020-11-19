@@ -301,8 +301,6 @@ button.deletebutton {
 }
 
 .formInput {
-  display: flex;
-  flex-direction: column;
   margin: 1rem 0;
 
   & input {
@@ -310,6 +308,19 @@ button.deletebutton {
   }
   & label {
     margin-bottom: 0.5rem;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &.normal {
+    display: flex;
+    flex-direction: column;
+
+    & label:hover {
+      cursor: auto;
+    }
   }
 }
 

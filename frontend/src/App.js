@@ -7,9 +7,9 @@ import { useSelector, useDispatch } from "react-redux";
 import SigninPage from "./pages/SigninPage";
 
 import { signout } from "./redux/user/actions";
-import { removeAllFromCart } from "./redux/cart/actions";
 import RegisterPage from "./pages/RegisterPage";
-import ShippingAddressPage from "./pages/ShippingAddressPage.js";
+import ShippingAddressPage from "./pages/ShippingAddressPage/";
+import PaymentScreen from "./pages/PaymentPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -19,7 +19,6 @@ function App() {
 
   const handleSignout = () => {
     dispatch(signout());
-    dispatch(removeAllFromCart());
   };
 
   return (
@@ -60,6 +59,7 @@ function App() {
           <Route path="/signin" component={SigninPage} />
           <Route path="/register" component={RegisterPage} />
           <Route path="/shipping" component={ShippingAddressPage} />
+          <Route path="/payment" component={PaymentScreen} />
           <Route exact path="/" component={HomePage} />
         </main>
         <footer>All rights reserved</footer>

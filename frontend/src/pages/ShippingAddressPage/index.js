@@ -6,11 +6,12 @@ import { saveShippingAddress } from "../../redux/cart/actions";
 
 const ShippingAddressPage = (props) => {
   const { userInfo } = useSelector((state) => state.userInfo);
-  const { shippingAddress } = useSelector((state) => state.cartList);
 
   if (!userInfo) {
     props.history.push("/signin");
   }
+
+  const { shippingAddress } = useSelector((state) => state.cartList);
 
   const [fullName, setFullName] = useState(shippingAddress.fullName);
   const [street, setStreet] = useState(shippingAddress.street);
