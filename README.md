@@ -36,7 +36,8 @@ another ecommerce project with react
 - creating `redux` folder and creating **store**
 - adding redux devtools to store
 - added `<Provider store={store}>` to `index.js`
-- added folder for product stuff(_actions, types, reducers_)
+- added folder for **product** stuff(_actions, types, reducers_)
+- added folder for **user** stuff(_actions, types, reducers_)
 - modified **HomePage** to use store instead of **Hooks**
 - modified **ProductPage** to use store instead of **Hooks**
 - changing `<a href=>` to `<Link to=>` to prevent page from refreshing

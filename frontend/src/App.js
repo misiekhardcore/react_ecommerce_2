@@ -8,6 +8,7 @@ import SigninPage from "./pages/SigninPage";
 
 import { signout } from "./redux/user/actions";
 import { removeAllFromCart } from "./redux/cart/actions";
+import RegisterPage from "./pages/RegisterPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -57,6 +58,7 @@ function App() {
           <Route exact path="/" component={HomePage} />
           <Route path="/cart/:id?" component={CartPage} />
           <Route path="/signin" component={SigninPage} />
+          <Route path="/register" component={RegisterPage} />
         </main>
         <footer>All rights reserved</footer>
       </div>

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Rating = ({rating, numReviews,_id}) => {
+const Rating = ({ rating, numReviews, _id }) => {
   return (
     <div className="rating">
       <i className={rating >= 1 ? "fas fa-star" : ""}></i>
@@ -21,4 +21,4 @@ const Rating = ({rating, numReviews,_id}) => {
   );
 };
 
-export default Rating
+export default Rating;

@@ -3,20 +3,23 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import FormInput from "../../components/FormInput";
 
-import { signin } from "../../redux/user/actions";
+import { register, setUserInfo } from "../../redux/user/actions";
 import LoadingBox from "../../components/LoadingBox";
 import MessageBox from "../../components/MessageBox";
 
-const SigninPage = (props) => {
+const RegisterPage = (props) => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmpassword, setConfirmPassword] = useState("");
 
   const redirect = props.location.search
     ? props.location.search.split("=")[1]
     : "/";
 
   const dispatch = useDispatch();
-  const { info, loading, userInfo } = useSelector((state) => state.userInfo);
+  const { info, loading } = useSelector((state) => state.userRegister);
+  const { userInfo } = useSelector((state) => state.userInfo);
 
   useEffect(() => {
     if (userInfo) {
@@ -26,8 +29,9 @@ const SigninPage = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    dispatch(signin(email, password));
+    if (password !== confirmpassword) {
+      dispatch(setUserInfo({ type: "error", message: "Passwords not match" }));
+    } else dispatch(register(name, email, password));
   };
 
   return (
@@ -35,12 +39,20 @@ const SigninPage = (props) => {
       <div className="row">
         <div className="card no-flex">
           <div className="card-body">
-            <h1>Sign In</h1>
+            <h1>Register</h1>
             {loading && <LoadingBox />}
             {info && (
               <MessageBox variant={info.type}>{info.message}</MessageBox>
             )}
             <form className="form" onSubmit={handleSubmit}>
+              <FormInput
+                type="text"
+                name="name"
+                label="Name:"
+                placeholder="Enter your name"
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
               <FormInput
                 type="email"
                 name="email"
@@ -57,11 +69,20 @@ const SigninPage = (props) => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
+              <FormInput
+                type="password"
+                name="confirmpassword"
+                label="ConfirmPassword:"
+                placeholder="Confirm password"
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+              />
               <button className="block primary" type="submit">
-                Signin
+                Register
               </button>
               <div style={{ marginTop: "2rem" }}>
-                New account? <Link to={`/register?redirect=${redirect}`}>Create an account</Link>
+                Have an account?{" "}
+                <Link to={`/signin?redirect=${redirect}`}>Sign In</Link>
               </div>
             </form>
           </div>
@@ -71,4 +92,4 @@ const SigninPage = (props) => {
   );
 };
 
-export default SigninPage;
+export default RegisterPage;

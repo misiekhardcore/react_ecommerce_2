@@ -1,7 +1,7 @@
 import types from "./types";
 
 export const cartListReducer = (
-  state = { cartItems: [], loading: true, error: null },
+  state = { cartItems: [], loading: true, info: null },
   action
 ) => {
   switch (action.type) {
@@ -34,7 +34,7 @@ export const cartListReducer = (
       return {
         ...state,
         loading: false,
-        error: action.payload,
+        info: action.payload,
       };
     case types.REMOVE_FROM_CART_REQUEST:
       return {
