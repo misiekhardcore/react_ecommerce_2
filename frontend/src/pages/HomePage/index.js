@@ -27,7 +27,7 @@ const HomePage = () => {
           {products.map((product) => (
             <Product key={product._id} {...product} />
           ))}
-          {[...Array(4 - (products.length % 4)).keys()].map((x) => (
+          {/* {[...Array(4 - (products.length % 4)).keys()].map((x) => (
             <div
               className="card"
               style={{
@@ -35,7 +35,7 @@ const HomePage = () => {
                 backgroundColor: "transparent",
                }}
             ></div>
-          ))}
+          ))} */}
         </div>
       )}
     </>

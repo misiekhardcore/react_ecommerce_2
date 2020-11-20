@@ -13,11 +13,11 @@ const ShippingAddressPage = (props) => {
 
   const { shippingAddress } = useSelector((state) => state.cartList);
 
-  const [fullName, setFullName] = useState(shippingAddress.fullName);
-  const [street, setStreet] = useState(shippingAddress.street);
-  const [city, setCity] = useState(shippingAddress.city);
-  const [postalCode, setPostalCode] = useState(shippingAddress.postalCode);
-  const [country, setCountry] = useState(shippingAddress.country);
+  const [fullName, setFullName] = useState(shippingAddress.fullName || '');
+  const [street, setStreet] = useState(shippingAddress.street || '');
+  const [city, setCity] = useState(shippingAddress.city || '');
+  const [postalCode, setPostalCode] = useState(shippingAddress.postalCode || '');
+  const [country, setCountry] = useState(shippingAddress.country || '');
 
   const dispatch = useDispatch();
 

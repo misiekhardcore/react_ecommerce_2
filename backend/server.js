@@ -26,7 +26,7 @@ app.get("/", (req, res) => {
 });
 
 app.use((err, req, res, next) => {
-  res.status(500).send({ message: { type: "error", message: err.message } });
+  res.status(500).send({ info: { type: "error", message: err.message } });
 });
 
 const port = process.env.PORT || 5000;

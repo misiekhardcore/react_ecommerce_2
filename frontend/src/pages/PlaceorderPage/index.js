@@ -1,18 +1,28 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import CheckoutSteps from "../../components/CheckoutSteps";
+import { clearOrder, createOrder } from "../../redux/order/actions";
+import { removeAllFromCart } from "../../redux/cart/actions";
+
+import LoadingBox from "./../../components/LoadingBox";
+import MessageBox from "./../../components/MessageBox";
 
 const PlaceorderPage = (props) => {
   const { cartItems, shippingAddress, paymentMethod } = useSelector(
     (state) => state.cartList
   );
+  const { userInfo } = useSelector((state) => state.userInfo);
+
+  const dispatch = useDispatch();
 
   const cart = useSelector((state) => state.cartList);
 
-  if (!shippingAddress.street) {
+  if (!shippingAddress.street || !userInfo) {
     props.history.push("/payment");
   }
+
+  const { order, loading, info } = useSelector((state) => state.order);
 
   const toPrice = (num) => Number(num.toFixed(2));
   cart.itemsPrice = toPrice(
@@ -22,7 +32,19 @@ const PlaceorderPage = (props) => {
   cart.taxPrice = toPrice(0.15 * cart.itemsPrice);
   cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice;
 
-  const handlePlaceorder = () => {};
+  const handlePlaceorder = () => {
+    dispatch(createOrder({ ...cart, orderItems: cartItems }));
+  };
+
+  useEffect(() => {
+    if (info) {
+      if (info.type === "success") {
+        props.history.push(`/order/${order._id}`);
+        dispatch(clearOrder());
+        dispatch(removeAllFromCart());
+      }
+    }
+  }, [info]);
 
   return (
     <div>
@@ -115,6 +137,13 @@ const PlaceorderPage = (props) => {
                   >
                     Place Order
                   </button>
+                </li>
+                <li>
+                  {loading ? (
+                    <LoadingBox />
+                  ) : info ? (
+                    <MessageBox variant={info.type}>{info.message}</MessageBox>
+                  ) : null}
                 </li>
               </ul>
             </div>

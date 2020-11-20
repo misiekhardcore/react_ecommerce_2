@@ -30,12 +30,16 @@ userRouter.post(
             isAdmin: user.isAdmin,
             token: generateToken(user),
           });
+        } else {
+          res.status(401).send({
+            info: { type: "error", message: "Invalid email or password" },
+          }); 
         }
-      } else throw new Error();
+      }
     } catch (err) {
-      res
-        .status(401)
-        .send({ type: "error", message: "Invalid email or password" });
+      res.status(401).send({
+        info: { type: "error", message: "Invalid email or password" },
+      });
     }
   })
 );
@@ -61,7 +65,9 @@ userRouter.post(
         });
       }
     } catch (err) {
-      res.status(401).send({ type: "error", message: "Email already taken" });
+      res
+        .status(401)
+        .send({ info: { type: "error", message: "Email already taken" } });
     }
   })
 );

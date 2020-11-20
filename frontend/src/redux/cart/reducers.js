@@ -34,7 +34,7 @@ export const cartListReducer = (
       return {
         ...state,
         loading: false,
-        info: action.payload,
+        ...action.payload,
       };
     case types.REMOVE_FROM_CART_REQUEST:
       return {

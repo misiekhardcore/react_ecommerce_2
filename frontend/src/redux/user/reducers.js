@@ -15,7 +15,7 @@ export const userSigninReducer = (state = {}, action) => {
     case types.USER_SIGNIN_FAIL:
       return {
         loading: false,
-        info: action.payload,
+        ...action.payload,
       };
     case types.USER_SIGNOUT:
       return {};
@@ -42,7 +42,7 @@ export const userRegisterReducer = (state = {}, action) => {
     case types.USER_REGISTER_FAIL:
       return {
         loading: false,
-        info: action.payload,
+        ...action.payload,
       };
     case types.USER_REGISTER_SET_INFO:
       return {

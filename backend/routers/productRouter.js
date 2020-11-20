@@ -13,7 +13,9 @@ productRouter.get(
     if (products) {
       res.send(products);
     } else {
-      res.status(404).send({ type: "error", message: "Products not found" });
+      res
+        .status(404)
+        .send({ info: { type: "error", message: "Products not found" } });
     }
   })
 );
@@ -36,7 +38,9 @@ productRouter.get(
       const seller = data.sellers.find((x) => x._id === product.sellerId);
       res.send({ product, seller });
     } else {
-      res.status(404).send({ type: "error", message: "Product not found" });
+      res
+        .status(404)
+        .send({ info: { type: "error", message: "Product not found" } });
     }
   })
 );

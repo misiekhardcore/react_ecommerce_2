@@ -10,7 +10,7 @@ export const productListReducer = (
     case types.PRODUCT_LIST_SUCCESS:
       return { loading: false, products: action.payload };
     case types.PRODUCT_LIST_FAIL:
-      return { loading: false, info: action.payload };
+      return { loading: false, ...action.payload };
     default:
       return state;
   }
@@ -26,7 +26,7 @@ export const productDetailsReducer = (
     case types.PRODUCT_DETAILS_SUCCESS:
       return { loading: false, ...action.payload };
     case types.PRODUCT_DETAILS_FAIL:
-      return { loading: false, info: action.payload };
+      return { loading: false, ...action.payload };
     default:
       return state;
   }
