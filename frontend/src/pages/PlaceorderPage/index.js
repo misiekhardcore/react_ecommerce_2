@@ -13,18 +13,17 @@ const PlaceorderPage = (props) => {
     (state) => state.cartList
   );
   const { userInfo } = useSelector((state) => state.userInfo);
+  const { order, loading, info } = useSelector((state) => state.orderCreate);
+  const cart = useSelector((state) => state.cartList);
 
   const dispatch = useDispatch();
-
-  const cart = useSelector((state) => state.cartList);
 
   if (!shippingAddress.street || !userInfo) {
     props.history.push("/payment");
   }
 
-  const { order, loading, info } = useSelector((state) => state.order);
-
   const toPrice = (num) => Number(num.toFixed(2));
+
   cart.itemsPrice = toPrice(
     cart.cartItems.reduce((a, c) => a + c.qty * c.product.price, 0)
   );
@@ -39,12 +38,12 @@ const PlaceorderPage = (props) => {
   useEffect(() => {
     if (info) {
       if (info.type === "success") {
-        props.history.push(`/order/${order._id}`);
+        props.history.push(`/orders/${order._id}`);
         dispatch(clearOrder());
         dispatch(removeAllFromCart());
       }
     }
-  }, [info]);
+  }, [dispatch, order, props.history, info]);
 
   return (
     <div>

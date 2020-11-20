@@ -34,10 +34,7 @@ export const fetchProductDetails = (id) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: types.PRODUCT_DETAILS_FAIL,
-      payload:
-        err.response && err.response.data.message
-          ? err.response.data.message
-          : err.message,
+      payload: err.response && err.response,
     });
   }
 };

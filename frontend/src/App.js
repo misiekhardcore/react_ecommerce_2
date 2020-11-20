@@ -10,6 +10,7 @@ import ShippingAddressPage from "./pages/ShippingAddressPage/";
 import PaymentScreen from "./pages/PaymentPage";
 import PlaceorderPage from "./pages/PlaceorderPage";
 import Header from "./components/Header";
+import OrderPage from "./pages/OrderPage";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/shipping" component={ShippingAddressPage} />
           <Route path="/payment" component={PaymentScreen} />
           <Route path="/placeorder" component={PlaceorderPage} />
+          <Route path="/orders/:id" component={OrderPage} />
           <Route exact path="/" component={HomePage} />
         </main>
         <footer>All rights reserved</footer>

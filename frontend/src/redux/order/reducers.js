@@ -1,6 +1,6 @@
 import types from "./types";
 
-export const orderReducer = (state = {}, action) => {
+export const orderCreateReducer = (state = {}, action) => {
   switch (action.type) {
     case types.ORDER_CREATE_REQUEST:
       return {
@@ -18,6 +18,27 @@ export const orderReducer = (state = {}, action) => {
       };
     case types.ORDER_CREATE_RESET:
       return {};
+    default:
+      return state;
+  }
+};
+
+export const orderFetchReducer = (state = {loading: true}, action) => {
+  switch (action.type) {
+    case types.ORDER_FETCH_REQUEST:
+      return {
+        loading: true,
+      };
+    case types.ORDER_FETCH_SUCCESS:
+      return {
+        loading: false,
+        order: { ...action.payload },
+      };
+    case types.ORDER_FETCH_FAIL:
+      return {
+        loading: false,
+        ...action.payload.data,
+      };
     default:
       return state;
   }
