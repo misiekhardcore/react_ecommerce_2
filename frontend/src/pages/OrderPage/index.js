@@ -6,7 +6,12 @@ import { Link, useParams } from "react-router-dom";
 
 import LoadingBox from "../../components/LoadingBox";
 import MessageBox from "../../components/MessageBox";
-import { fetchOrder } from "../../redux/order/actions";
+import {
+  clearOrder,
+  fetchOrder,
+  orderPayment,
+  resetOrder,
+} from "../../redux/order/actions";
 
 const OrderPage = (props) => {
   const { id } = useParams();
@@ -15,6 +20,8 @@ const OrderPage = (props) => {
 
   const { order, loading, info } = useSelector((state) => state.orderFetch);
   const { userInfo } = useSelector((state) => state.userInfo);
+  const orderPay = useSelector((state) => state.orderPay);
+  const { info: infoPay, loading: loadingPay } = orderPay;
 
   const dispatch = useDispatch();
 
@@ -35,7 +42,9 @@ const OrderPage = (props) => {
       document.body.appendChild(script);
     };
 
-    if (!order) {
+    if (!order || info || (order && order._id !== id)) {
+      dispatch(resetOrder());
+      dispatch(clearOrder());
       dispatch(fetchOrder(id));
     } else {
       if (!order.isPaid) {
@@ -46,9 +55,11 @@ const OrderPage = (props) => {
         }
       }
     }
-  }, [dispatch, order, id, sdkReady]);
+  }, [dispatch, order, id, info, sdkReady]);
 
-  const handleSuccessPayment = () => {};
+  const handleSuccessPayment = (paymentResult) => {
+    dispatch(orderPayment(order, paymentResult));
+  };
 
   return loading ? (
     <LoadingBox />
@@ -87,7 +98,9 @@ const OrderPage = (props) => {
                 {order.paymentMethod}
               </p>
               {order.isPaid ? (
-                <MessageBox variant="success">Paid</MessageBox>
+                <MessageBox variant="success">
+                  Paid at: {order.paidAt}
+                </MessageBox>
               ) : (
                 <MessageBox variant="error">Not Paid</MessageBox>
               )}
@@ -147,20 +160,26 @@ const OrderPage = (props) => {
                   <p className="price">Total:</p>
                   <p className="price">$ {order.totalPrice}</p>
                 </li>
-                <li>
-                  {!order.isPaid && (
-                    <li>
-                      {!sdkReady ? (
-                        <LoadingBox />
-                      ) : (
+                {!order.isPaid && (
+                  <li>
+                    {!sdkReady ? (
+                      <LoadingBox />
+                    ) : (
+                      <>
+                        {infoPay && infoPay.type === "error" && (
+                          <MessageBox variant={infoPay.type}>
+                            {infoPay.message}
+                          </MessageBox>
+                        )}
+                        {loadingPay && <LoadingBox />}
                         <PayPalButton
                           amount={order.totalPrice}
                           onSuccess={handleSuccessPayment}
                         />
-                      )}
-                    </li>
-                  )}
-                </li>
+                      </>
+                    )}
+                  </li>
+                )}
               </ul>
             </div>
           </div>

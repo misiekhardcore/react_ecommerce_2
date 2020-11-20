@@ -39,6 +39,29 @@ export const orderFetchReducer = (state = { loading: true }, action) => {
         loading: false,
         ...action.payload.data,
       };
+    case types.ORDER_PAY_RESET:
+      return {};
+    default:
+      return state;
+  }
+};
+
+export const orderPayReducer = (state = { loading: false }, action) => {
+  switch (action.type) {
+    case types.ORDER_PAY_REQUEST:
+      return {
+        loading: true,
+      };
+    case types.ORDER_PAY_SUCCESS:
+      return {
+        loading: false,
+        ...action.payload,
+      };
+    case types.ORDER_PAY_FAIL:
+      return {
+        loading: false,
+        info: { ...action.payload },
+      };
     default:
       return state;
   }
