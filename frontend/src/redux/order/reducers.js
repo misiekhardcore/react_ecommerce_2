@@ -23,7 +23,7 @@ export const orderCreateReducer = (state = {}, action) => {
   }
 };
 
-export const orderFetchReducer = (state = {loading: true}, action) => {
+export const orderFetchReducer = (state = { loading: true }, action) => {
   switch (action.type) {
     case types.ORDER_FETCH_REQUEST:
       return {

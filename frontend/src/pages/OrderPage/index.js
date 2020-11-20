@@ -1,4 +1,6 @@
-import React, { useEffect } from "react";
+import Axios from "axios";
+import { PayPalButton } from "react-paypal-button-v2";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 
@@ -8,6 +10,9 @@ import { fetchOrder } from "../../redux/order/actions";
 
 const OrderPage = (props) => {
   const { id } = useParams();
+
+  const [sdkReady, setSdkReady] = useState(false);
+
   const { order, loading, info } = useSelector((state) => state.orderFetch);
   const { userInfo } = useSelector((state) => state.userInfo);
 
@@ -18,8 +23,32 @@ const OrderPage = (props) => {
   }
 
   useEffect(() => {
-    dispatch(fetchOrder(id));
-  }, [dispatch, id]);
+    const addPayPalScript = async () => {
+      const { data } = await Axios.get("/api/config/paypal");
+      const script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = `https://www.paypal.com/sdk/js?client-id=${data}`;
+      script.async = true;
+      script.onload = () => {
+        setSdkReady(true);
+      };
+      document.body.appendChild(script);
+    };
+
+    if (!order) {
+      dispatch(fetchOrder(id));
+    } else {
+      if (!order.isPaid) {
+        if (!window.paypal) {
+          addPayPalScript();
+        } else {
+          setSdkReady(true);
+        }
+      }
+    }
+  }, [dispatch, order, id, sdkReady]);
+
+  const handleSuccessPayment = () => {};
 
   return loading ? (
     <LoadingBox />
@@ -117,6 +146,20 @@ const OrderPage = (props) => {
                 <li className="row">
                   <p className="price">Total:</p>
                   <p className="price">$ {order.totalPrice}</p>
+                </li>
+                <li>
+                  {!order.isPaid && (
+                    <li>
+                      {!sdkReady ? (
+                        <LoadingBox />
+                      ) : (
+                        <PayPalButton
+                          amount={order.totalPrice}
+                          onSuccess={handleSuccessPayment}
+                        />
+                      )}
+                    </li>
+                  )}
                 </li>
               </ul>
             </div>
