@@ -51,6 +51,21 @@ orderRouter.get(
   })
 );
 
+orderRouter.get(
+  "/",
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    const orders = await Order.find({ user: req.user._id });
+    if (orders) {
+      res.send(orders);
+    } else {
+      res
+        .status(404)
+        .send({ info: { type: "error", message: "Orders Not Found" } });
+    }
+  })
+);
+
 orderRouter.put(
   "/:id/pay",
   isAuth,

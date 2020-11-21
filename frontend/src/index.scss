@@ -256,6 +256,10 @@ button.block {
   display: block;
 }
 
+button.small{
+  font-size: 1.2rem;
+}
+
 .alert {
   padding: 1rem;
   border: 1px solid transparent;
@@ -358,5 +362,21 @@ button.deletebutton {
   &.active {
     border-color: #ff8000;
     color: #ff8000;
+  }
+}
+
+.table {
+  border: none;
+  width: 100%;
+  border-collapse: collapse;
+
+  & tr td,
+  tr th {
+    padding: 1rem;
+    border: 0.1rem solid #e4e4e4;
+  }
+
+  & tbody tr:nth-child(even) {
+    background-color: #f4f4f4;
   }
 }

@@ -1,7 +1,7 @@
 # react_ecommerce_2
 
 another ecommerce project with react
-[video](https://youtu.be/TRCDsB9i3bI?t=23546)
+[video](https://youtu.be/TRCDsB9i3bI?t=28766)
 
 ### server with express
 
@@ -38,6 +38,7 @@ another ecommerce project with react
 - added `<Provider store={store}>` to `index.js`
 - added folder for **product** stuff(_actions, types, reducers_)
 - added folder for **user** stuff(_actions, types, reducers_)
+- added folder for **order** stuff(_actions, types, reducers_)
 - modified **HomePage** to use store instead of **Hooks**
 - modified **ProductPage** to use store instead of **Hooks**
 - changing `<a href=>` to `<Link to=>` to prevent page from refreshing
@@ -47,3 +48,7 @@ another ecommerce project with react
 - making cart template
 - adding cart to redux store
 - using `localStorage` to keep **cartList** reducer params in memory
+
+### paypal
+
+- install `react-paypal-button-v2`

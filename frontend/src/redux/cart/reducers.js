@@ -1,7 +1,7 @@
 import types from "./types";
 
 export const cartListReducer = (
-  state = { cartItems: [], loading: true, info: null },
+  state = { cartItems: [], loading: true },
   action
 ) => {
   switch (action.type) {

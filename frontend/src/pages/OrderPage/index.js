@@ -42,7 +42,7 @@ const OrderPage = (props) => {
       document.body.appendChild(script);
     };
 
-    if (!order || info || (order && order._id !== id)) {
+    if (!order || (order && order._id !== id)) {
       dispatch(resetOrder());
       dispatch(clearOrder());
       dispatch(fetchOrder(id));
@@ -55,7 +55,7 @@ const OrderPage = (props) => {
         }
       }
     }
-  }, [dispatch, order, id, info, sdkReady]);
+  }, [dispatch, order, id, sdkReady]);
 
   const handleSuccessPayment = (paymentResult) => {
     dispatch(orderPayment(order, paymentResult));
@@ -130,7 +130,8 @@ const OrderPage = (props) => {
                       </div>
                       <div></div>
                       <div>
-                        {qty} x ${product.price} = ${qty * product.price}
+                        {qty} x ${product.price.toFixed(2)} = $
+                        {(qty * product.price).toFixed(2)}
                       </div>
                     </div>
                   );
@@ -146,19 +147,19 @@ const OrderPage = (props) => {
               <ul>
                 <li className="row">
                   <p>Items:</p>
-                  <p>$ {order.itemsPrice}</p>
+                  <p>$ {order.itemsPrice.toFixed(2)}</p>
                 </li>
                 <li className="row">
                   <p>Shipping:</p>
-                  <p>$ {order.shippingPrice}</p>
+                  <p>$ {order.shippingPrice.toFixed(2)}</p>
                 </li>
                 <li className="row">
                   <p>Tax:</p>
-                  <p>$ {order.taxPrice}</p>
+                  <p>$ {order.taxPrice.toFixed(2)}</p>
                 </li>
                 <li className="row">
                   <p className="price">Total:</p>
-                  <p className="price">$ {order.totalPrice}</p>
+                  <p className="price">$ {order.totalPrice.toFixed(2)}</p>
                 </li>
                 {!order.isPaid && (
                   <li>

@@ -108,3 +108,31 @@ export const resetOrder = () => (dispatch) => {
 export const clearOrder = () => (dispatch) => {
   dispatch({ type: types.ORDER_CREATE_RESET });
 };
+
+export const fetchOrderAll = () => async (dispatch, getState) => {
+  dispatch({
+    type: types.ORDER_FETCH_ALL_REQUEST,
+  });
+
+  try {
+    const {
+      userInfo: { userInfo },
+    } = getState();
+    const { data } = await Axios.get(`/api/orders/`, {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    });
+    dispatch({
+      type: types.ORDER_FETCH_ALL_SUCCESS,
+      payload: data,
+    });
+  } catch (err) {
+    dispatch({
+      type: types.ORDER_FETCH_ALL_FAIL,
+      payload: err.response
+        ? err.response
+        : { info: { type: "error", message: err.message } },
+    });
+  }
+};
