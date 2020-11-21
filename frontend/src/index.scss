@@ -256,7 +256,7 @@ button.block {
   display: block;
 }
 
-button.small{
+button.small {
   font-size: 1.2rem;
 }
 
@@ -341,13 +341,18 @@ button.deletebutton {
   .dropdownContent {
     position: absolute;
     display: none;
+    top: 1.5rem;
     right: 0;
-    min-width: 12rem;
+    min-width: 15rem;
     padding: 1rem;
     z-index: 1;
     background-color: #203040;
     margin: 0.4rem 0 0;
     border-radius: 0.5rem;
+
+    & li {
+      padding: 0.5rem;
+    }
   }
 }
 

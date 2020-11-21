@@ -27,10 +27,11 @@ const Header = (props) => {
         </Link>
         {userInfo ? (
           <div className="dropdown">
-            <Link to="#">
-              {userInfo.name} <i className="fa fa-caret-down"></i>
-            </Link>
+            {userInfo.name} <i className="fa fa-caret-down"></i>
             <ul className="dropdownContent">
+              <li>
+                <Link to={`/users/${userInfo._id}`}>User profile</Link>
+              </li>
               <li>
                 <Link to="/orders">Order history</Link>
               </li>

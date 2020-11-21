@@ -37,7 +37,6 @@ export const userRegisterReducer = (state = {}, action) => {
     case types.USER_REGISTER_SUCCESS:
       return {
         loading: false,
-        info: null,
       };
     case types.USER_REGISTER_FAIL:
       return {
@@ -47,6 +46,22 @@ export const userRegisterReducer = (state = {}, action) => {
     case types.USER_REGISTER_SET_INFO:
       return {
         info: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+export const userFetchReducer = (state = { user: {} }, action) => {
+  switch (action.type) {
+    case types.USER_FETCH_REQUEST:
+      return {
+        loading: true,
+      };
+    case types.USER_FETCH_SUCCESS:
+      return {
+        loading: false,
+        user: action.payload,
       };
     default:
       return state;

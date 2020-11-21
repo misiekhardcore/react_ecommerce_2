@@ -67,3 +67,31 @@ export const setUserInfo = (info) => async (dispatch) => {
     payload: info,
   });
 };
+
+export const fetchUser = (id) => async (dispatch, getState) => {
+  const {
+    userInfo: { userInfo },
+  } = getState();
+
+  dispatch({
+    type: types.USER_FETCH_REQUEST,
+  });
+
+  try {
+    const { data } = await Axios.get(`/api/users/${id}`, {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    });
+
+    dispatch({
+      type: types.USER_FETCH_SUCCESS,
+      payload: data,
+    });
+  } catch (err) {
+    dispatch({
+      type: types.USER_FETCH_FAIL,
+      payload: err.response && err.response.data,
+    });
+  }
+};

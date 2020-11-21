@@ -67,6 +67,7 @@ export const orderPayment = (order, paymentResult) => async (
   dispatch({
     type: types.ORDER_PAY_REQUEST,
   });
+  
   const {
     userInfo: { userInfo },
   } = getState();
@@ -118,15 +119,18 @@ export const fetchOrderAll = () => async (dispatch, getState) => {
     const {
       userInfo: { userInfo },
     } = getState();
+
     const { data } = await Axios.get(`/api/orders/`, {
       headers: {
         Authorization: `Bearer ${userInfo.token}`,
       },
     });
+
     dispatch({
       type: types.ORDER_FETCH_ALL_SUCCESS,
       payload: data,
     });
+
   } catch (err) {
     dispatch({
       type: types.ORDER_FETCH_ALL_FAIL,
