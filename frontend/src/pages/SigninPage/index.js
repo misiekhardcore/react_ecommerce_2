@@ -61,7 +61,10 @@ const SigninPage = (props) => {
                 Signin
               </button>
               <div style={{ marginTop: "2rem" }}>
-                New account? <Link to={`/register?redirect=${redirect}`}>Create an account</Link>
+                New account?{" "}
+                <Link to={`/register?redirect=${redirect}`}>
+                  Create an account
+                </Link>
               </div>
             </form>
           </div>
