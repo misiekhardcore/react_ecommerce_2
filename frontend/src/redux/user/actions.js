@@ -68,6 +68,13 @@ export const setUserInfo = (info) => async (dispatch) => {
   });
 };
 
+export const setUserFetchInfo = (info) => async (dispatch) => {
+  dispatch({
+    type: types.USER_FETCH_SET_INFO,
+    payload: info,
+  });
+};
+
 export const fetchUser = (id) => async (dispatch, getState) => {
   const {
     userInfo: { userInfo },
@@ -88,6 +95,43 @@ export const fetchUser = (id) => async (dispatch, getState) => {
       type: types.USER_FETCH_SUCCESS,
       payload: data,
     });
+  } catch (err) {
+    dispatch({
+      type: types.USER_FETCH_FAIL,
+      payload: err.response && err.response.data,
+    });
+  }
+};
+
+export const updateUser = (user) => async (dispatch, getState) => {
+  const {
+    userInfo: { userInfo },
+  } = getState();
+
+  dispatch({
+    type: types.USER_FETCH_REQUEST,
+  });
+
+  try {
+    const { data } = await Axios.put(`/api/users/${user.id}`, user, {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    });
+
+    dispatch({
+      type: types.USER_FETCH_SET_INFO,
+      payload: { type: "success", message: "Updated successfully" },
+    });
+    dispatch({
+      type: types.USER_SIGNIN_SUCCESS,
+      payload: data,
+    });
+    dispatch({
+      type: types.USER_FETCH_SUCCESS,
+      payload: data,
+    });
+    localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (err) {
     dispatch({
       type: types.USER_FETCH_FAIL,

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import FormInput from "../../components/FormInput";
@@ -8,7 +8,7 @@ import LoadingBox from "../../components/LoadingBox";
 import MessageBox from "../../components/MessageBox";
 
 const RegisterPage = (props) => {
-  const [name, setName] = useState("");
+  const [name, setName] = useState(() => "");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
@@ -19,13 +19,6 @@ const RegisterPage = (props) => {
 
   const dispatch = useDispatch();
   const { info, loading } = useSelector((state) => state.userRegister);
-  const { userInfo } = useSelector((state) => state.userInfo);
-
-  useEffect(() => {
-    if (userInfo) {
-      props.history.push(redirect);
-    }
-  }, [props.history, redirect, userInfo]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

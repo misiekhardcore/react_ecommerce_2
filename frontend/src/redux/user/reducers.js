@@ -4,16 +4,19 @@ export const userSigninReducer = (state = {}, action) => {
   switch (action.type) {
     case types.USER_SIGNIN_REQUEST:
       return {
+        ...state,
         loading: true,
       };
     case types.USER_SIGNIN_SUCCESS:
       return {
+        ...state,
         loading: false,
         userInfo: action.payload,
         info: null,
       };
     case types.USER_SIGNIN_FAIL:
       return {
+        ...state,
         loading: false,
         ...action.payload,
       };
@@ -21,6 +24,7 @@ export const userSigninReducer = (state = {}, action) => {
       return {};
     case types.USER_REGISTER_REQUEST:
       return {
+        ...state,
         loading: true,
       };
     default:
@@ -45,6 +49,7 @@ export const userRegisterReducer = (state = {}, action) => {
       };
     case types.USER_REGISTER_SET_INFO:
       return {
+        ...state,
         info: action.payload,
       };
     default:
@@ -52,16 +57,29 @@ export const userRegisterReducer = (state = {}, action) => {
   }
 };
 
-export const userFetchReducer = (state = { user: {} }, action) => {
+export const userFetchReducer = (state = {}, action) => {
   switch (action.type) {
     case types.USER_FETCH_REQUEST:
       return {
+        ...state,
         loading: true,
       };
     case types.USER_FETCH_SUCCESS:
       return {
+        ...state,
         loading: false,
         user: action.payload,
+      };
+    case types.USER_FETCH_FAIL:
+      return {
+        ...state,
+        loading: false,
+        ...action.payload,
+      };
+    case types.USER_FETCH_SET_INFO:
+      return {
+        ...state,
+        info: action.payload,
       };
     default:
       return state;

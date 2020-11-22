@@ -4,7 +4,6 @@ import HomePage from "./pages/HomePage";
 import ProductPage from "./pages/ProductPage";
 import CartPage from "./pages/CartPage";
 import SigninPage from "./pages/SigninPage";
-
 import RegisterPage from "./pages/RegisterPage";
 import ShippingAddressPage from "./pages/ShippingAddressPage/";
 import PaymentScreen from "./pages/PaymentPage";
@@ -13,6 +12,8 @@ import Header from "./components/Header";
 import OrderPage from "./pages/OrderPage";
 import OrderhistoryPage from "./pages/OrderhistoryPage";
 import UserPage from "./pages/UserPage";
+
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
@@ -28,7 +29,7 @@ function App() {
           <Route path="/payment" component={PaymentScreen} />
           <Route path="/placeorder" component={PlaceorderPage} />
           <Route path="/orders/:id" component={OrderPage} />
-          <Route path="/users/:id" component={UserPage} />
+          <PrivateRoute path="/users/:id" component={UserPage} />
           <Route exact path="/orders/" component={OrderhistoryPage} />
           <Route exact path="/" component={HomePage} />
         </main>

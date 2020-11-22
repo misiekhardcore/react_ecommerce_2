@@ -33,6 +33,33 @@ userRouter.get(
   })
 );
 
+userRouter.put(
+  "/:id",
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    try {
+      const user = await User.findById(req.body.id);
+      if (user) {
+        user.name = req.body.name || user.name;
+        user.email = req.body.email || user.email;
+        if (req.body.password) {
+          user.password = bcrypt.hashSync(req.body.password, 8);
+        }
+        const updatedUser = await user.save();
+        res.send({
+          _id: updatedUser._id,
+          email: updatedUser.email,
+          name: updatedUser.name,
+          isAdmin: updatedUser.isAdmin,
+          token: generateToken(updatedUser),
+        });
+      }
+    } catch (err) {
+      res.status(404).send({ info: { type: "error", message: err.message } });
+    }
+  })
+);
+
 userRouter.post(
   "/signin",
   expressAsyncHandler(async (req, res) => {
@@ -52,6 +79,10 @@ userRouter.post(
             info: { type: "error", message: "Invalid email or password" },
           });
         }
+      } else {
+        res.status(401).send({
+          info: { type: "error", message: "Invalid email or password" },
+        });
       }
     } catch (err) {
       res.status(401).send({
